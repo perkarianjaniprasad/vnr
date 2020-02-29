@@ -1,0 +1,66 @@
+
+<button class="btn btn-primary" type="button" data-target="#m1" data-toggle="modal">Generate Id</button>
+<div style="background-color: khaki;">
+<!--THE MODAL-->
+<div class="modal" id="m1">
+<div class="modal-dialog">
+<div class="modal-content">
+
+ <!--modal-header--> 
+ <div class="modal-header" style="background-color: cadetblue;">
+<h4 class="modal-title">Modal Heading</h4>
+<button type="button" class="close" data-dismiss="modal">close</button>
+ </div>
+
+ <!--modal-body-->
+ <div class="modal-body" style="background-color: rgb(157, 255, 0);">
+    <form #ref="ngForm" >
+    <div class="form-group">
+    <label for="y">Year Of Joining</label>
+    <input type="number" id="y" class="form-control" name="yearofjoin" ngModel>
+    </div>
+
+    <div class="form-group">
+     Choose Branch Name <br>
+      <select name="branchname" id="b" class="form-control" ngModel>
+        <option value="b"></option>
+        <option value="civil">civil</option>
+        <option value="mech">mech</option>
+        <option value="ece">ece</option>
+        <option value="cse">cse</option>
+        </select>
+        </div>
+
+        <div class="form-group">
+        Choose Branch Code <br>
+        <select name="branchcode" id="bc" class="form-control" ngModel>
+            <option value="bc"></option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+            </div>
+    </form>
+ </div>
+ 
+ <!--modal-footer-->
+ <div class="modal-footer" style="background-color: cadetblue;">
+<button type="button" class="btn btn-success" (click)="generateid(ref.value)" data-dismiss="modal">send</button>
+
+ </div>
+</div>
+</div>
+</div>
+ <table class="table">
+     
+<th style="background-color: blue;">yearofjoin</th>
+<th style="background-color: blue;">branchname</th>
+<th style="background-color: blue;">branchcode</th>
+<tr *ngFor="let k Of data ">
+<td>{{k.yearofjoin}}</td>
+<td>{{k.branchname}}</td>
+<td>{{k.branchcode}}</td>
+</tr>
+</table>
+</div>

@@ -1,0 +1,79 @@
+
+<div class="container-fluid" >
+    <div class="text-center">
+    <button class="btn btn-success" data-target="#m" data-toggle="modal">MARKS</button>
+    </div>
+    <div class="modal" id="m">
+        <div class="modal-dialog">
+        <div class="modal-content">
+        <div class="modal-header">
+            welcome
+            <button class="btn btn-danger" data-dismiss="modal" class="close">X</button>
+        </div>
+        <div class="modal-body">
+            <div class="jumbotron" style="background-color: rgb(113, 139, 0);">
+
+            <form #ref="ngForm" (ngSubmit)="uploadattendance(ref.value)">
+            <div class="form-group">
+                <label for="yr">YEAR OF JOIN</label>
+                <select name="yearofjoin" id="yr" ngModel>
+                    <option value="2015">2015</option>
+                    <option value="2016">2016</option>
+                    <option value="2017">2017</option>
+                    <option value="2018">2018</option>
+                    <option value="2019">2019</option>
+                    <option value="2020">2020</option>
+                </select>
+            </div>
+            <div class="form-group">
+               CHOOSE SUBJECT NAME <br>
+                <select name="subjectname" class="form-control" ngModel>
+                    <option value=""></option>
+                    <option value="subject1">subject1</option>
+                    <option value="sub2ject">subject2</option>
+                    <option value="subject3">subject3</option>
+                    <option value="subject4">subject4</option>
+                    <option value="lab">lab</option>
+                    <option value="studentid">studentid</option>
+                    <option value="totalmarks">totalmarks</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="file">UploadAttendance</label>
+                <input (change)=fileUpload($event) class="form-control" type="file" id="file" name="attendence" ngModel>
+            </div>
+        </form>
+    </div>
+        </div>
+        <div class="modal-footer">
+            <div class="mx-auto">
+            <button class="btn btn-success" type="submit" data-dismiss="modal" (click)="uploadattendance(ref.value)">send</button>
+        </div>
+        </div>
+        </div>
+        </div>
+    </div>
+    </div>
+
+    <table class="table">
+        <thead style="background-color: rgb(20, 33, 220);">
+            <th>YEAR</th>
+            <th>subject1</th>
+            <th>subject2</th>
+            <th>subject3</th>
+            <th>subject4</th>
+            <th>lad</th>
+            <th>studentid</th>
+            <th>totalmarks</th>
+        </thead>
+        <tr *ngFor="let i of marks">
+            <td>{{i.year}}</td>
+            <td>{{i.subject1}}</td>
+            <td>{{i.subject2}}</td>
+            <td>{{i.subject3}}</td>
+            <td>{{i.subject4}}</td>
+            <td>{{i.lab}}</td>
+            <td>{{i.studentid}}</td>
+            <td>{{i.totalmarks}}</td>
+        </tr>
+    </table>

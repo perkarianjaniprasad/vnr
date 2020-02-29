@@ -1,0 +1,232 @@
+<input
+type="search"
+placeholder="Search By Student_Name"
+class="form-control mt-5"
+[(ngModel)]="searchTerm" >
+<!-- <tbody>
+ <tr class="table-info" *ngFor="let t of data | common : searchTerm">
+
+ </tr>
+ </tbody> -->
+<button class="btn btn-warning" type="button" (click)="downloadPDF()">DownloadPDF</button>
+
+<div class="row">
+    <div class="col-sm-9">
+        <div class="text-center">
+        <button type="submit" class="btn btn-success" (click)="downloadFile()">DownloadExcel</button>
+    </div>
+ <button class="btn btn-success" type="button" data-target="#m1" data-toggle="modal">Register</button>
+ <!--modal form-->
+ 
+<div class="modal" id="m1">
+<div class="modal-dialog">
+<div class="modal-content">
+ <!--modal header-->
+<div class="modal-header">
+<h2><u>Student Register Form</u></h2>
+<button class="close"  data-dismiss="modal">x</button>
+</div>
+<!--modal body-->
+<div class="modal-body">
+<form #ref="ngForm" (ngSubmit)="studentRegister(ref.value)">
+<div class="form-group">
+<label for="f">First Name</label>
+<input type="text" class="form-control" id="f" required #regg="ngModel" name="firstname" required minlength="3" ngModel>
+<div *ngIf="regg.touched && regg.invalid" class="alert alert-danger">Firs Name Will Be Minimum 3 Characters</div>
+</div>
+<div class="form-group">
+<label for="l">Last Name</label>
+<input type="text" name="lastname" id="l" required #regg1="ngModel" class="form-control" required minlength="3" ngModel>
+<div *ngIf="regg1.touched && regg1.invalid" class="alert alert-danger">Last Name Will Be Minimum 3 Characters</div>
+</div>
+<div class="form-check">
+<label for="g" class="form-check-lable">Gender</label> <br>
+<input type="radio" name="m" id="g" value="male" class="form-check-input" ngModel>male <br>
+<input type="radio" name="m" id="g1" value="female" class="form-check-input" ngModel >female
+</div><br>
+<div class="form-group">
+ <label for="ph">Phone Number</label>
+ <input type="number" id="ph" name="phonenumber" required #regg2="ngModel" required pattern="\d\d\d\d\d\d\d\d\d\d" class="form-control" ngModel>
+ <div *ngIf="regg2.touched && regg2.invalid" class="alert alert-danger">Laters Will Be Minimum 10 Should Be There</div>
+</div>
+<div class="form-group">
+<label for="em">EmailId</label>
+<input type="text" id="em" name="emailid" required #regg3="ngModel" class="form-control" ngModel>
+<div *ngIf="regg3.touched && regg3.invalid" class="alert alert-danger">Email Must Valid</div>
+</div>
+<div class="form-group">
+<label for="dp">Department</label>
+<input type="text" id="dp" name="department" [(ngModel)]="data1" [attr.disabled]="true" class="form-control" >
+</div>
+<div class="form-group">
+<label for="pa">PostAdress</label>
+<textarea name="postaddress" id="pa" cols="30" rows="10" class="form-control" ngModel></textarea>
+
+</div>
+<div class="form-group">
+<label for="y">Year Of Join</label>
+<input type="number" name="yearofjoin" id="y" class="form-control" ngModel>
+</div>
+<div class="form-group">
+<label for="sc">SSC Percentage</label>
+<input type="number" name="ssc" id="sc" class="form-control" ngModel>
+</div>
+<div class="form-group">
+<label for="in">Inter Percentage</label>
+<input type="number" name="inter" id="in" class="form-control" ngModel >
+</div>
+</form>
+</div>
+
+<!--modal footer-->
+<div class="modal-footer">
+<div>
+
+</div>
+<button class="btn btn-success" (click)="studentRegister(ref.value)" [disabled]="ref.invalid" data-dismiss="modal">Register</button>
+</div>
+
+</div>
+</div>
+</div>
+    </div>
+<!--read all years-->
+
+<div class="col-sm-3">
+<label for="y" ><b>sort by year</b></label>
+<select  id="y" #refchange (change)="changeYear(refchange.value)" ngModel>
+<option value="all">ALL</option>
+<OPtion value="2014">2014</OPtion>
+<option value="2015">2015</option>
+<option value="2016">2016</option>
+<option value="2017">2017</option>
+<option value="2018">2018</option>
+<option value="2019">2019</option>
+<option value="2020">2020</option>
+</select>
+
+</div>
+</div>
+
+
+ <table class="table">
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Gender</th>
+    <th>Phone Number</th>
+    <th>EmailId</th>
+    <th>Department</th>
+    <th>PostAdress</th>
+    <th>Year Of Join</th>
+    <th>SSC Percentage</th>
+    <th>Inter Percentage</th>
+    <th>Update</th>
+    <th>Delete</th>
+
+    <tr *ngFor="let k of data | common : searchTerm">
+        <td>{{k.firstname}}</td>
+        <td>{{k.lastname}}</td>
+        <td>{{k.m}}</td>
+        <td>{{k.phonenumber}}</td>
+        <td>{{k.emailid}}</td>
+        <td>{{k.department}}</td>
+        <td>{{k.postaddress}}</td>
+        <td>{{k.yearofjoin}}</td>
+        <td>{{k.ssc}}</td>
+        <td>{{k.inter}}</td>
+        <!-- <td>{{k.studentid}}</td> -->
+        <td>
+            <button class="btn btn-primary" data-toggle="modal"  (click)="update(k)" data-target="#m2">Update</button>
+       
+        <!--update modal-->
+<!--modal form-->
+<div class="modal" id="m2">
+    <div class="modal-dialog">
+    <div class="modal-content">
+    <!--modal header-->
+    <div class="modal-header">
+    <h2><u>Student Register Form</u></h2>
+    <button class="close"  data-dismiss="modal">x</button>
+    </div>
+    modal body
+     <div class="modal-body">
+    <form #ref1="ngForm" (ngSubmit)="updateRegister(ref1.value)">
+    <div class="form-group">
+    <label for="fn">First Name</label>
+    <input type="text" class="form-control" id="fn" [(ngModel)]="ed.firstname" required #regg11="ngModel" name="firstname" required minlength="3" ngModel>
+    <div *ngIf="regg11.touched && regg11.invalid" class="alert alert-danger">Firs Name Will Be Minimum 3 Characters</div>
+    </div>
+    <div class="form-group">
+    <label for="ln">Last Name</label>
+    <input type="text" name="lastname" id="ln" [(ngModel)]="ed.lastname" required #regg10="ngModel" class="form-control" required minlength="3" ngModel>
+    <div *ngIf="regg10.touched && regg10.invalid" class="alert alert-danger">Last Name Will Be Minimum 3 Characters</div>
+    </div>
+    <div class="form-check">
+    <label for="gd" class="form-check-lable">Gender</label> <br>
+    <input type="radio" name="m" id="gd"  value="male" class="form-check-input" ngModel>male <br>
+    <input type="radio" name="m" id="gd1"  value="female" class="form-check-input" ngModel >female
+    </div><br>
+    <div class="form-group">
+    <label for="pn">Phone Number</label>
+    <input type="number" id="pn" [(ngModel)]="ed.phonenumber" name="phonenumber" required #regg20="ngModel" required pattern="\d\d\d\d\d\d\d\d\d\d" class="form-control" ngModel>
+    <div *ngIf="regg20.touched && regg20.invalid" class="alert alert-danger">Laters Will Be Minimum 10 Should Be There</div>
+    </div>
+    <div class="form-group">
+    <label for="emn">EmailId</label>
+    <input type="text" id="emn" [(ngModel)]="ed.emailid" name="emailid" required #regg30="ngModel" class="form-control" ngModel>
+    <div *ngIf="regg30.touched && regg30.invalid" class="alert alert-danger">Email Must Valid</div>
+    </div>
+    <div class="form-group">
+    <label for="dpn">Department</label>
+    <select name="department" id="dpn" [(ngModel)]="ed.department" class="form-control" ngModel>
+    <option value="b"></option>
+    <option value="CIV">Civil</option>
+    <option value="MEC">Mechanical</option>
+    <option value="ECE">ECE</option>
+    <option value="CSE">CSE</option>
+    </select>
+    </div>
+    <div class="form-group">
+    <label for="pan">PostAdress</label>
+    <input type="text" name="postaddress" id="pan" [(ngModel)]="ed.postaddress" class="form-control" ngModel>
+    </div>
+    <div class="form-group">
+    <label for="yn">Year Of Join</label>
+    <input type="number" name="yearofjoin" id="yn" [(ngModel)]="ed.yearofjoin" class="form-control" ngModel>
+    </div>
+    <div class="form-group">
+    <label for="scn">SSC Percentage</label>
+    <input type="number" name="ssc" id="scn" [(ngModel)]="ed.ssc" class="form-control" ngModel>
+    </div>
+    <div class="form-group">
+    <label for="int">Inter Percentage</label>
+    <input type="number" name="inter" id="int" [(ngModel)]="ed.inter" class="form-control" ngModel >
+    </div>
+    </form>
+    </div>
+    
+    <!--modal footer-->
+      <div class="modal-footer">
+    <button class="btn btn-success" type="submit" (click)="updateRegister(ref1.value)" data-dismiss="modal" >Update</button>
+    </div>
+    
+</div>
+</div>
+</div>
+       
+       
+        </td>
+           
+
+<td>
+    <button class="btn btn-danger" data-dismiss="close" (click)="doDelete(k)">Delete</button>
+</td>
+    </tr>
+</table> 
+
+
+
+
+
+
+

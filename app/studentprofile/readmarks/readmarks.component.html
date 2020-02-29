@@ -1,0 +1,30 @@
+
+<table class="table">
+
+<thead>
+    
+       
+    <th>year</th>
+    <th>subject1</th>
+    <th>subject2</th>
+    <th>subject3</th>
+    <th>subject4</th>
+    <th>lab</th>
+    <th>studentid</th>
+    <th>totalmarks</th>
+    </thead>
+    
+    <tr *ngFor="let i of readmarks">
+
+    <td>{{i.year}}</td>
+    <td>{{i.subject1}}</td>
+    <td>{{i.subject2}}</td>
+    <td>{{i.subject3}}</td>
+    <td>{{i.subject4}}</td>
+    <td>{{i.lab}}</td>
+    <td>{{i.studentid}}</td>
+    <td>{{i.totalmarks}}</td>
+    
+</tr>
+
+</table>
